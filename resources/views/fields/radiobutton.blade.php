@@ -9,7 +9,7 @@
                    <input {{ $attributes->except('id') }}
                            @if($active($key, $value)) checked @endif
                             value="{{ $key }}" id="{{ $key }}-{{$id}}"
-                    >{{ $option }}</label>
+                    >{!! $option !!}</label>
             @endforeach
         </div>
     </div>
