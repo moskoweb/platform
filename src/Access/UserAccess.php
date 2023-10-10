@@ -144,12 +144,41 @@ trait UserAccess
             });
     }
 
+    /**
+     * Add Role.
+     */
     public function addRole(Model $role): Model
     {
         $result = $this->roles()->save($role);
 
         $this->eventAddRole($role);
 
+        return $result;
+    }
+
+    /**
+     * Add Role Slug.
+     */
+    public function AddRoleBySlug(string $slug): Model
+    {
+        $role = $this->roles()->where('slug', $slug)->first();
+
+        if ($role === null) {
+            return 0;
+        }
+
+        return $this->addRole($role);
+    }
+
+    /**
+     * Remove Role.
+     */
+    public function removeRole(Model $role): Model
+    {
+        $result = $this->roles()->detach($role);
+        
+        $this->eventRemoveRole($role);
+        
         return $result;
     }
 
@@ -164,17 +193,7 @@ trait UserAccess
             return 0;
         }
 
-        $this->eventRemoveRole($role);
-
-        return $this->roles()->detach($role);
-    }
-
-    /**
-     * @return int|null
-     */
-    public function removeRole(RoleInterface $role): int
-    {
-        return $this->removeRoleBySlug($role->getRoleSlug());
+        return $this->removeRole($role);
     }
 
     /**
