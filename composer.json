@@ -38,7 +38,7 @@
     "require": {
         "ext-json": "*",
         "orchid/blade-icons": "^4.0",
-        "tabuna/breadcrumbs": "^4.0",
+        "tabuna/breadcrumbs": "^4.1",
         "laravel/framework": "^10.0||^11.0",
         "laravel/scout": "^9.0 || ^10.0",
         "watson/active": "^7.0",
